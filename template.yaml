@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: AWS SAM template to deploy a Lambda function for Solana transactions.
+
+Resources:
+  SolanaTransactionFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: app.handler
+      Runtime: nodejs20.x
+      CodeUri: .
+      MemorySize: 512
+      Timeout: 100
+      Policies:
+        - AWSLambdaBasicExecutionRole
+
+Outputs:
+  SolanaTransactionFunctionArn:
+    Description: "ARN of the Solana Transaction Lambda Function"
+    Value: !GetAtt SolanaTransactionFunction.Arn
